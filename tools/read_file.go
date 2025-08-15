@@ -5,6 +5,13 @@ import (
 	"os"
 )
 
+var ReadFileDefinition = ToolDefinition{
+	Name:        "read_file",
+	Function:    ReadFile,
+	InputSchema: ReadFileInputSchema,
+	Description: "Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.",
+}
+
 type ReadFileInput struct {
 	Path string `json:"path" jsonschema_description:"The relative path of a file in the working directory."`
 }
@@ -24,11 +31,4 @@ func ReadFile(input json.RawMessage) (string, error) {
 	}
 
 	return string(fileContent), nil
-}
-
-var ReadFileDefinition = ToolDefinition{
-	Name:        "read file",
-	Function:    ReadFile,
-	InputSchema: ReadFileInputSchema,
-	Description: "Read the contents of a given relative file path. Use this when you want to see what's inside a file. Do not use this with directory names.",
 }

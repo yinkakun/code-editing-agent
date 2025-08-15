@@ -124,7 +124,7 @@ func (a *Agent) Run(ctx context.Context) error {
 
 func main() {
 	client := anthropic.NewClient()
-	tools := []tools.ToolDefinition{tools.ReadFileDefinition}
+	tools := []tools.ToolDefinition{tools.ReadFileDefinition, tools.ListFileDefinition}
 
 	scanner := bufio.NewScanner(os.Stdin)
 
