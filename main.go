@@ -43,6 +43,7 @@ func (a *Agent) runInference(ctx context.Context, conversation []anthropic.Messa
 		Model:     anthropic.ModelClaude3_5HaikuLatest,
 		MaxTokens: int64(1024),
 		Messages:  conversation,
+		Tools:     anthropicTools,
 	})
 
 	return message, err
@@ -124,7 +125,7 @@ func (a *Agent) Run(ctx context.Context) error {
 
 func main() {
 	client := anthropic.NewClient()
-	tools := []tools.ToolDefinition{tools.ReadFileDefinition, tools.ListFileDefinition}
+	tools := []tools.ToolDefinition{tools.ReadFileDefinition, tools.ListFileDefinition, tools.EditFIleDefinition}
 
 	scanner := bufio.NewScanner(os.Stdin)
 
